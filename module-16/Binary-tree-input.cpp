@@ -13,7 +13,7 @@ public:
         this->left = NULL;
         this->right = NULL;
     }
-};
+}; 
 
 void level_order(Node *root)
 {

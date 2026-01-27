@@ -39,31 +39,24 @@ Node* input_tree(){
         if(p->right) q.push(p->right);
     }
     return root;
-}
+};
 
-int count_leaf_nodes(Node* root){
-    if(root == NULL)
-        return 0;
-    if(root->left == NULL && root->right == NULL)
-        return 1;
-    int l = count_leaf_nodes(root->left);
-    int r = count_leaf_nodes(root->right);
-    return l+r;
-}
+int sum = 0;
 
-int max_height(Node * root){
-    if(root == NULL)
-        return 0;
-    if(root->left == NULL && root->right == NULL)
-        return 0;
-    int l = max_height(root->left);
-    int r = max_height(root->right);
-    return max(l,r)+1;
+void traverse_sum_without_leaves(Node* root){
+    if(root != NULL)
+    {
+        if(root->left != NULL || root->right != NULL)
+            sum += root->val;
+        traverse_sum_without_leaves(root->left);
+        traverse_sum_without_leaves(root->right);
+    }
 }
 
 int main()
 {
     Node* root = input_tree();
-    cout << max_height(root) << endl;
+    traverse_sum_without_leaves(root);
+    cout << sum << endl;
     return 0;
-}
+} 
